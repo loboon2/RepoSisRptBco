@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SisRptBanco.Data", "SisRptBanco.Data\SisRptBanco.Data.csproj", "{DF9E20BF-0009-4B97-A31C-0976D5CAD705}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SisRptBanco.UI", "SisRptBanco.UI\SisRptBanco.UI.csproj", "{87293372-9DFE-444D-842D-2C673D1FF05A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DF9E20BF-0009-4B97-A31C-0976D5CAD705} = {DF9E20BF-0009-4B97-A31C-0976D5CAD705}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF9E20BF-0009-4B97-A31C-0976D5CAD705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF9E20BF-0009-4B97-A31C-0976D5CAD705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF9E20BF-0009-4B97-A31C-0976D5CAD705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF9E20BF-0009-4B97-A31C-0976D5CAD705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87293372-9DFE-444D-842D-2C673D1FF05A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87293372-9DFE-444D-842D-2C673D1FF05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87293372-9DFE-444D-842D-2C673D1FF05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87293372-9DFE-444D-842D-2C673D1FF05A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

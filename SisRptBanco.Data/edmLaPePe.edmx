@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LaPePeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DMovCtaxBco">
+          <Key>
+            <PropertyRef Name="IdMovCtaxBco" />
+          </Key>
+          <Property Name="IdMovCtaxBco" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCtaxBco" Type="int" />
+          <Property Name="dFecIng" Type="datetime" />
+          <Property Name="dFecOpe" Type="datetime" />
+          <Property Name="cNroOpe" Type="varchar" MaxLength="100" />
+          <Property Name="cConcepto" Type="varchar" MaxLength="200" />
+          <Property Name="nImporte" Type="numeric" Precision="15" Scale="4" />
+          <Property Name="cDestino" Type="varchar" MaxLength="300" />
+          <Property Name="cNroFac" Type="varchar" MaxLength="50" />
+          <Property Name="nSalFin" Type="numeric" Precision="15" Scale="4" />
+          <Property Name="cEstado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="MCtaxBco">
+          <Key>
+            <PropertyRef Name="IdCtaxBco" />
+          </Key>
+          <Property Name="IdCtaxBco" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cDesBco" Type="varchar" MaxLength="100" />
+          <Property Name="cNroCta" Type="varchar" MaxLength="100" />
+          <Property Name="cTipIns" Type="char" MaxLength="2" />
+          <Property Name="cEstado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="TTipIns">
+          <Key>
+            <PropertyRef Name="cTipIns" />
+          </Key>
+          <Property Name="cTipIns" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="cDesIns" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_DMovCtaxBco_MCtaxBco">
+          <End Role="MCtaxBco" Type="Self.MCtaxBco" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DMovCtaxBco" Type="Self.DMovCtaxBco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCtaxBco">
+              <PropertyRef Name="IdCtaxBco" />
+            </Principal>
+            <Dependent Role="DMovCtaxBco">
+              <PropertyRef Name="IdCtaxBco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MCtaxBco_TTipIns">
+          <End Role="TTipIns" Type="Self.TTipIns" Multiplicity="0..1" />
+          <End Role="MCtaxBco" Type="Self.MCtaxBco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTipIns">
+              <PropertyRef Name="cTipIns" />
+            </Principal>
+            <Dependent Role="MCtaxBco">
+              <PropertyRef Name="cTipIns" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LaPePeModelStoreContainer">
+          <EntitySet Name="DMovCtaxBco" EntityType="Self.DMovCtaxBco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MCtaxBco" EntityType="Self.MCtaxBco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTipIns" EntityType="Self.TTipIns" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DMovCtaxBco_MCtaxBco" Association="Self.FK_DMovCtaxBco_MCtaxBco">
+            <End Role="MCtaxBco" EntitySet="MCtaxBco" />
+            <End Role="DMovCtaxBco" EntitySet="DMovCtaxBco" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MCtaxBco_TTipIns" Association="Self.FK_MCtaxBco_TTipIns">
+            <End Role="TTipIns" EntitySet="TTipIns" />
+            <End Role="MCtaxBco" EntitySet="MCtaxBco" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LaPePeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LaPePeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TTipIns" EntityType="LaPePeModel.TTipIns" />
+          <EntitySet Name="DMovCtaxBco" EntityType="LaPePeModel.DMovCtaxBco" />
+          <EntitySet Name="MCtaxBco" EntityType="LaPePeModel.MCtaxBco" />
+          <AssociationSet Name="FK_DMovCtaxBco_MCtaxBco" Association="LaPePeModel.FK_DMovCtaxBco_MCtaxBco">
+            <End Role="MCtaxBco" EntitySet="MCtaxBco" />
+            <End Role="DMovCtaxBco" EntitySet="DMovCtaxBco" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MCtaxBco_TTipIns" Association="LaPePeModel.FK_MCtaxBco_TTipIns">
+            <End Role="TTipIns" EntitySet="TTipIns" />
+            <End Role="MCtaxBco" EntitySet="MCtaxBco" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TTipIns">
+          <Key>
+            <PropertyRef Name="cTipIns" />
+          </Key>
+          <Property Name="cTipIns" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="cDesIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MCtaxBco" Relationship="LaPePeModel.FK_MCtaxBco_TTipIns" FromRole="TTipIns" ToRole="MCtaxBco" />
+        </EntityType>
+        <EntityType Name="DMovCtaxBco">
+          <Key>
+            <PropertyRef Name="IdMovCtaxBco" />
+          </Key>
+          <Property Name="IdMovCtaxBco" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCtaxBco" Type="Int32" />
+          <Property Name="dFecIng" Type="DateTime" Precision="3" />
+          <Property Name="dFecOpe" Type="DateTime" Precision="3" />
+          <Property Name="cNroOpe" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cConcepto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="nImporte" Type="Decimal" Precision="15" Scale="4" />
+          <Property Name="cDestino" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="cNroFac" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nSalFin" Type="Decimal" Precision="15" Scale="4" />
+          <Property Name="cEstado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="MCtaxBco" Relationship="LaPePeModel.FK_DMovCtaxBco_MCtaxBco" FromRole="DMovCtaxBco" ToRole="MCtaxBco" />
+        </EntityType>
+        <EntityType Name="MCtaxBco">
+          <Key>
+            <PropertyRef Name="IdCtaxBco" />
+          </Key>
+          <Property Name="IdCtaxBco" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cDesBco" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cNroCta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cTipIns" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="cEstado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="DMovCtaxBco" Relationship="LaPePeModel.FK_DMovCtaxBco_MCtaxBco" FromRole="MCtaxBco" ToRole="DMovCtaxBco" />
+          <NavigationProperty Name="TTipIns" Relationship="LaPePeModel.FK_MCtaxBco_TTipIns" FromRole="MCtaxBco" ToRole="TTipIns" />
+        </EntityType>
+        <Association Name="FK_DMovCtaxBco_MCtaxBco">
+          <End Type="LaPePeModel.MCtaxBco" Role="MCtaxBco" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LaPePeModel.DMovCtaxBco" Role="DMovCtaxBco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCtaxBco">
+              <PropertyRef Name="IdCtaxBco" />
+            </Principal>
+            <Dependent Role="DMovCtaxBco">
+              <PropertyRef Name="IdCtaxBco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MCtaxBco_TTipIns">
+          <End Type="LaPePeModel.TTipIns" Role="TTipIns" Multiplicity="0..1" />
+          <End Type="LaPePeModel.MCtaxBco" Role="MCtaxBco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTipIns">
+              <PropertyRef Name="cTipIns" />
+            </Principal>
+            <Dependent Role="MCtaxBco">
+              <PropertyRef Name="cTipIns" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LaPePeModelStoreContainer" CdmEntityContainer="LaPePeEntities">
+          <EntitySetMapping Name="TTipIns">
+            <EntityTypeMapping TypeName="LaPePeModel.TTipIns">
+              <MappingFragment StoreEntitySet="TTipIns">
+                <ScalarProperty Name="cDesIns" ColumnName="cDesIns" />
+                <ScalarProperty Name="cTipIns" ColumnName="cTipIns" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DMovCtaxBco">
+            <EntityTypeMapping TypeName="LaPePeModel.DMovCtaxBco">
+              <MappingFragment StoreEntitySet="DMovCtaxBco">
+                <ScalarProperty Name="cEstado" ColumnName="cEstado" />
+                <ScalarProperty Name="nSalFin" ColumnName="nSalFin" />
+                <ScalarProperty Name="cNroFac" ColumnName="cNroFac" />
+                <ScalarProperty Name="cDestino" ColumnName="cDestino" />
+                <ScalarProperty Name="nImporte" ColumnName="nImporte" />
+                <ScalarProperty Name="cConcepto" ColumnName="cConcepto" />
+                <ScalarProperty Name="cNroOpe" ColumnName="cNroOpe" />
+                <ScalarProperty Name="dFecOpe" ColumnName="dFecOpe" />
+                <ScalarProperty Name="dFecIng" ColumnName="dFecIng" />
+                <ScalarProperty Name="IdCtaxBco" ColumnName="IdCtaxBco" />
+                <ScalarProperty Name="IdMovCtaxBco" ColumnName="IdMovCtaxBco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MCtaxBco">
+            <EntityTypeMapping TypeName="LaPePeModel.MCtaxBco">
+              <MappingFragment StoreEntitySet="MCtaxBco">
+                <ScalarProperty Name="cEstado" ColumnName="cEstado" />
+                <ScalarProperty Name="cTipIns" ColumnName="cTipIns" />
+                <ScalarProperty Name="cNroCta" ColumnName="cNroCta" />
+                <ScalarProperty Name="cDesBco" ColumnName="cDesBco" />
+                <ScalarProperty Name="IdCtaxBco" ColumnName="IdCtaxBco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,23 @@
+﻿body {
+    /*background-color: #eaeaea;*/
+}
+
+/*.tdThemeSelector {
+    width: 180px;
+}
+
+.tdThemeSelector p {
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+}*/
+
+.cbThemeSelector {
+    width: 120px;
+    float: right;
+}
+
+.lblThemeSelector {
+    float: right;
+    padding-right: 10px;
+}
