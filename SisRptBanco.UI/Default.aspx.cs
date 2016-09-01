@@ -19,6 +19,7 @@ namespace SisRptBanco.UI
         {
             if (!IsPostBack)
             {
+                //lapepe 2222
                 deFechaInicio.Date = Herramientas.FechaDelServidor();
                 deFechaFin.Date = Herramientas.FechaDelServidor();
                 edsMovPorCuenta.WhereParameters.Add(new Parameter("fechaInicio", System.Data.DbType.DateTime));
